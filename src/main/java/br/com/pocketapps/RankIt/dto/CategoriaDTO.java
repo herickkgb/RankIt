@@ -1,5 +1,6 @@
 package br.com.pocketapps.RankIt.dto;
 
+import br.com.pocketapps.RankIt.entities.Categoria;
 import br.com.pocketapps.RankIt.entities.Cursos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.ManyToMany;
@@ -20,6 +21,11 @@ public class CategoriaDTO {
     public CategoriaDTO(Long id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+
+    public CategoriaDTO(Categoria entityAux) {
+        this.id = entityAux.getId();
+        this.nome = entityAux.getNome();
     }
 
     public Long getId() {

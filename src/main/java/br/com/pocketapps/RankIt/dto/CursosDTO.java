@@ -17,7 +17,7 @@ public class CursosDTO {
     private String preco;
     private String descricao;
 
-    private Set<Categoria> categorias = new HashSet<>();
+    private Set<CategoriaDTO> categorias = new HashSet<>();
 
     public CursosDTO() {
     }
@@ -39,7 +39,9 @@ public class CursosDTO {
         this.nota = x.getNota();
         this.descricao = x.getDescricao();
         this.preco = x.getPreco();
-        this.categorias = x.getCategorias();
+        for (Categoria entityAux : x.getCategorias()) {
+            categorias.add(new CategoriaDTO(entityAux));
+        }
         this.duracaoTotalCurso = x.getDuracaoTotalCurso();
         this.numeroDeAulas = x.getNumeroDeAulas();
         this.id = x.getId();
@@ -73,7 +75,7 @@ public class CursosDTO {
         return preco;
     }
 
-    public Set<Categoria> getCategorias() {
+    public Set<CategoriaDTO> getCategorias() {
         return categorias;
     }
 
