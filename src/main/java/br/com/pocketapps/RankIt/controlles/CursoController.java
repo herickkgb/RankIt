@@ -24,7 +24,7 @@ public class CursoController {
     private CursosService service;
 
     @Operation(summary = "Recuperar todos os cursos", method = "GET")
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<CursosDTO>> findAll() {
         List<CursosDTO> dtos = service.findAll();
         return ResponseEntity.ok(dtos);
@@ -47,7 +47,7 @@ public class CursoController {
     }
 
     @Operation(summary = "Buscar curso por ID", method = "GET")
-    @GetMapping("/findById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CursosDTO> findById(@PathVariable Long id) {
         CursosDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);
@@ -71,14 +71,14 @@ public class CursoController {
     }
 
     @Operation(summary = "Excluir curso por ID", method = "DELETE")
-    @DeleteMapping("/deleteByID/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @Operation(summary = "Atualiza as Informações de um Curso com Base no ID", method = "PUT")
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CursosDTO> update(@Valid @RequestBody CursosDTO dto, @PathVariable Long id) {
         dto = service.update(id, dto);
         return ResponseEntity.ok(dto);
