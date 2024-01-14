@@ -3,19 +3,21 @@ package br.com.pocketapps.RankIt.controlles;
 import br.com.pocketapps.RankIt.dto.CursosDTO;
 import br.com.pocketapps.RankIt.servicies.CursosService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api-v1")
 public class CursoController {
 
     @Autowired
@@ -46,14 +48,13 @@ public class CursoController {
 
     @Operation(summary = "Buscar curso por ID", method = "GET")
     @GetMapping("/findById/{id}")
-    public ResponseEntity<Optional<CursosDTO>> findById(@PathVariable Long id) {
-        Optional<CursosDTO> dto = Optional.ofNullable(service.findById(id));
+    public ResponseEntity<CursosDTO> findById(@PathVariable Long id) {
+        CursosDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);
     }
-
     @Operation(summary = "Inserir um novo curso", method = "POST")
     @PostMapping("/create")
-    public ResponseEntity<CursosDTO> create(@RequestBody CursosDTO dto) {
+    public ResponseEntity<CursosDTO> create(@Valid @RequestBody CursosDTO dto) {
         dto = service.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -77,11 +78,10 @@ public class CursoController {
     }
 
     @Operation(summary = "Atualiza as Informações de um Curso com Base no ID", method = "PUT")
-    @PutMapping("/update")
-    public ResponseEntity<CursosDTO> update(@RequestBody CursosDTO dto, @PathVariable Long id) {
-        CursosDTO entity = new CursosDTO();
-        entity = service.update(dto, id);
-        return ResponseEntity.ok(entity);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CursosDTO> update(@Valid @RequestBody CursosDTO dto, @PathVariable Long id) {
+        dto = service.update(id, dto);
+        return ResponseEntity.ok(dto);
     }
 
 
