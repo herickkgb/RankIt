@@ -3,6 +3,12 @@
 ## Sobre
 RankIt é uma API robusta para avaliação de cursos, oferecendo uma maneira eficiente de acessar e avaliar informações detalhadas sobre diversos cursos. A API retorna dados como nome do curso, autor, nota, número de aulas, duração total, preço e descrição.
 
+## Veja a API no Swagger
+```shell
+Copie e cole no navegador o link abaixo
+https://prnt.sc/nqJuetbztL05
+   ```
+
 ## Tecnologias Utilizadas
 Este projeto é desenvolvido com Java, utilizando o framework Spring Boot. As seguintes dependências são utilizadas:
 - Spring Boot Starter Data JPA
@@ -56,8 +62,26 @@ http://localhost:8080/swagger-ui/index.html#/curso-controller/findById
 
 ## Endpoints da API
 ### Buscar Cursos
--
 
+## Uso
+Após a instalação, você pode começar a usar a API para avaliar cursos. Envie requisições HTTP para os endpoints disponíveis para criar, recuperar, atualizar ou deletar informações dos cursos, além de buscar cursos por nome.
+
+### Exemplos de Retorno das Requisições
+- **GET**:
+  ```json
+  {
+    "id": 10,
+    "nome": "Curso de Machine Learning",
+    "author": "Lucas Rodriguez",
+    "nota": 4.6,
+    "numeroDeAulas": 60,
+    "duracaoTotalCurso": 90,
+    "preco": "150.00",
+    "descricao": "Aprendendo algoritmos de machine learning"
+  }
+  ```
+
+  
 **Buscar cursos por nome**:
   - **GET** `/api-v1/name/{name}`
     - Busca cursos com base no nome fornecido. Retorna uma lista de cursos que correspondem ao nome especificado.
@@ -80,24 +104,6 @@ Retorna uma lista de cursos que correspondem ao nome especificado.
   // ... outros cursos com nome similar
 ]
 ```
-
-## Uso
-Após a instalação, você pode começar a usar a API para avaliar cursos. Envie requisições HTTP para os endpoints disponíveis para criar, recuperar, atualizar ou deletar informações dos cursos, além de buscar cursos por nome.
-
-### Exemplos de Retorno das Requisições
-- **GET**:
-  ```json
-  {
-    "id": 10,
-    "nome": "Curso de Machine Learning",
-    "author": "Lucas Rodriguez",
-    "nota": 4.6,
-    "numeroDeAulas": 60,
-    "duracaoTotalCurso": 90,
-    "preco": "150.00",
-    "descricao": "Aprendendo algoritmos de machine learning"
-  }
-  ```
 
 - **POST**:
   ```json
@@ -135,14 +141,14 @@ Após a instalação, você pode começar a usar a API para avaliar cursos. Envi
   ```
 
 ## Exceções Personalizadas
-Este projeto implementa exceções personalizadas segu
+- Este projeto implementa exceções personalizadas segu
 
 indo as melhores práticas de programação. Isso garante uma melhor gestão de erros e uma comunicação mais clara dos problemas aos usuários da API.
 
 ## Contribuição
-Contribuições são sempre bem-vindas! Se você tem uma sugestão para melhorar este projeto, sinta-se à vontade para fazer um fork do repositório e enviar um pull request.
+- Contribuições são sempre bem-vindas! Se você tem uma sugestão para melhorar este projeto, sinta-se à vontade para fazer um fork do repositório e enviar um pull request.
 
 ## Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT) para detalhes.
+- Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT) para detalhes.
 
 ---
